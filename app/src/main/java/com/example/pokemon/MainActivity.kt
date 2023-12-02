@@ -1,5 +1,6 @@
 package com.example.pokemon
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +16,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.pokeballImageView.setOnClickListener {
-            Log.d(MainActivity::class.java.simpleName, "on click")
+            val intent = Intent(this, PokemonDetailActivity::class.java)
+            intent.putExtra("Name", "JJ")
+            startActivity(intent)
+        }
+
+        binding.backpackImageView.setOnClickListener {
+            val intent = Intent(this, PokemonCollectionActivity::class.java)
+            startActivity(intent)
         }
     }
 }
