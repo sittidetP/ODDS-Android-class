@@ -1,21 +1,21 @@
 package com.example.pokemon.view
 
-import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.pokemon.PokemonCollectionActivity
-import com.example.pokemon.PokemonDetailActivity
 import com.example.pokemon.R
 import com.example.pokemon.databinding.FragmentHomeBinding
 import com.example.pokemon.viewModel.HomeViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
@@ -38,10 +38,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        lifecycleScope.launch {
+            viewModel.uiState.collect {
+                Log.d(HomeFragment::class.simpleName, "$it")
+            }
+        }
+
         binding.pokeballImageView.setOnClickListener {
-            val intent = Intent(context, PokemonDetailActivity::class.java)
-            intent.putExtra("Name", "JJ")
-            startActivity(intent)
+            viewModel.getPokemonList()
         }
 
         binding.backpackImageView.setOnClickListener {
@@ -49,7 +53,5 @@ class HomeFragment : Fragment() {
                 R.id.action_homeFragment_to_pokemonCollectionFragment
             findNavController().navigate(action)
         }
-
-        viewModel.getPokemonList()
     }
 }
