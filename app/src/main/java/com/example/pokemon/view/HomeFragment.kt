@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.pokemon.PokemonCollectionActivity
 import com.example.pokemon.PokemonDetailActivity
 import com.example.pokemon.R
@@ -38,8 +39,9 @@ class HomeFragment : Fragment() {
         }
 
         binding.backpackImageView.setOnClickListener {
-            val intent = Intent(context, PokemonCollectionActivity::class.java)
-            startActivity(intent)
+            val action =
+                R.id.action_homeFragment_to_pokemonCollectionFragment
+            findNavController().navigate(action)
         }
     }
 }
