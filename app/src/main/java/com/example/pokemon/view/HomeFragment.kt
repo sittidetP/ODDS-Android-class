@@ -39,7 +39,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch {
-            viewModel.uiState.collect {
+            viewModel.uiState.
+            collect {
                 Log.d(HomeFragment::class.simpleName, "$it")
             }
         }

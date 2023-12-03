@@ -1,18 +1,30 @@
 package com.example.pokemon.model
 
+import com.google.gson.annotations.SerializedName
+
 data class Pokemon(
+    @SerializedName("id")
     val id: Int,
+    @SerializedName("name")
     val name: Name,
+    @SerializedName("type")
     val types: List<String>,
+    @SerializedName("HP")
     val hp: Int,
+    @SerializedName("Attack")
     val attack: Int,
+    @SerializedName("Defense")
     val defense: Int,
+    @SerializedName("Speed")
     val speed: Int,
+    @SerializedName("imageUrl")
     val imageUrl: String
 )
 
 data class Name(
+    @SerializedName("english")
     val english: String,
+    @SerializedName("japanese")
     val japanese: String
 )
 
