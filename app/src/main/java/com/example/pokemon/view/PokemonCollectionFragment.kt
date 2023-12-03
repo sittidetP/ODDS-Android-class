@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.pokemon.R
 import com.example.pokemon.adapter.PokemonAdapter
 import com.example.pokemon.databinding.FragmentPokemonCollectionBinding
 import com.example.pokemon.model.mockPokemonList
